@@ -9,7 +9,7 @@
   "colors": {
     "primary": "#fed127",
     "light": "#fed127",
-    "dark": "#a1831a"
+    "dark": "#fed127"
   },
   "topbarLinks": [
     {
@@ -59,7 +59,7 @@
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
+    "github": "https://github.com/gridflow-inc",
     "linkedin": "http://linkedin.com/company/grdflo/"
   }
 }
