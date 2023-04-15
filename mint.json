@@ -7,9 +7,9 @@
   },
   "favicon": "/favicon.png",
   "colors": {
-    "primary": "#0069ED",
-    "light": "#4D9CFF",
-    "dark": "#0050B4"
+    "primary": "#fed127",
+    "light": "#fed127",
+    "dark": "#a1831a"
   },
   "topbarLinks": [
     {
@@ -19,7 +19,7 @@
   ],
   "topbarCtaButton": {
     "name": "Get Started",
-    "url": "https://github.com/mintlify/starter"
+    "url": "https://grdflo.com/#form"
   },
   "anchors": [
     {
@@ -60,6 +60,6 @@
   "footerSocials": {
     "twitter": "https://twitter.com/mintlify",
     "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "linkedin": "http://linkedin.com/company/grdflo/"
   }
 }
