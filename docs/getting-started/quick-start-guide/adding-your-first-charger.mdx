@@ -1,5 +1,224 @@
 ---
-title: "Adding Your First Charger"
+title: 'Adding Your First Charger'
+description: 'Learn how to create a charger group, add a charger, and connect it to GridFlow Core'
 ---
 
-Write your content here.
+<Note>
+  This guide assumes you have already created a new organization and activated it as your current organization. If you haven't, please refer to the [Account Creation & Initial Setup](/docs/getting-started/quick-start-guide/account-creation-and-initial-setup) guide first.
+</Note>
+
+## Overview
+
+Adding your first charger involves three main steps:
+1. Creating a charger group
+2. Adding a charger
+3. Connecting the charger to GridFlow Core
+
+Let's get started!
+
+## Creating a Charger Group
+
+<Info>
+  It's crucial to create a Charger Group before adding individual chargers. A Charger Group is designed for a specific location and class of chargers, allowing for unified tariff application.
+</Info>
+
+<CardGroup cols={3}>
+  <Card title="Understanding Charger Groups" icon="layer-group" href="/docs/charger-network-management/understanding-charger-groups" />
+  <Card title="Applying Tariffs To Charger Groups" icon="money-bill" href="/docs/revenue-and-billing/tariff-management/applying-tariffs-to-charger-groups" />
+  <Card title="Tariff Strategies" icon="chart-line" href="/docs/revenue-and-billing/tariff-management/tariff-strategies" />
+</CardGroup>
+
+<Steps>
+  <Step title="Navigate to Charger Network">
+    Access the Charger Network page from the sidebar on the left.
+    
+    <Frame caption="GridFlow Core Navigation">
+      <img src="/images/nav_sidebar.png" alt="Navigating to Charger Network" />
+    </Frame>
+  </Step>
+
+  <Step title="Access Groups Tab">
+    On the Charger Network page, click on the Groups tab.
+  </Step>
+
+  <Step title="Create New Group">
+    Click on the "Add Charger Group" button in the top left of the table. A sidebar will open on the right of the screen.
+  </Step>
+
+  <Step title="Fill Group Details">
+    Provide the following information:
+    
+    <AccordionGroup>
+      <Accordion title="Name">
+        Choose a descriptive name for your group (e.g., "Downtown Public Chargers")
+      </Accordion>
+      <Accordion title="Address">
+        <Tooltip tip="Keep typing and select from the dropdown autofill options">
+          Use the autofill feature for accurate address entry
+        </Tooltip>
+      </Accordion>
+      <Accordion title="Description">
+        Add any relevant details about this group of chargers
+      </Accordion>
+      <Accordion title="Location">
+        <Tooltip tip="E.g., Parking Bay numbers, entrance number, Underground Parking">
+          Provide specific location details to help users find the chargers
+        </Tooltip>
+      </Accordion>
+    </AccordionGroup>
+    
+    <Frame caption="Charger Group Details Form">
+      <img src="/images/AddChargerGroup.png" alt="Charger Group Details Form" />
+    </Frame>
+  </Step>
+
+  <Step title="Create Group">
+    Press the "Create" button to finalize the charger group creation.
+  </Step>
+</Steps>
+
+<Check>
+  Congratulations! You've successfully created your first Charger Group.
+</Check>
+
+## Adding a Charger
+
+Now that you've created a charger group, let's add a charger to it.
+
+<Steps>
+  <Step title="Access Chargers Tab">
+    From the Charger Network page, select the Chargers tab.
+  </Step>
+
+  <Step title="Initiate Charger Addition">
+    Click on the "Add Charger" button in the top left of the table. A sidebar will open on the right.
+  </Step>
+
+  <Step title="Enter Charger Details">
+    Provide the following information:
+    
+    <AccordionGroup>
+      <Accordion title="Basic Information">
+        - Name <Tooltip tip="A name for your charger">e.g., "Downtown Charger 1"</Tooltip>
+        - ID <Tooltip tip="Must be unique across the system, like a username for your charger">e.g., "DT_CH_001"</Tooltip>
+        - Charger Group <Tooltip tip="Select the previously created charger group">Choose from dropdown</Tooltip>
+      </Accordion>
+      <Accordion title="Technical Specifications">
+        - Charger Make <Tooltip tip="The manufacturer">e.g., "ChargePoint"</Tooltip>
+        - Charger Model <Tooltip tip="Brand of the charger">e.g., "CT4000"</Tooltip>
+        - Charger Type <Tooltip tip="Port type of the charger">e.g., "Type 2"</Tooltip>
+        - Max Voltage <Tooltip tip="Charging voltage as specified by the manufacturer">e.g., "400V"</Tooltip>
+        - Max Amperage <Tooltip tip="Charging ampere as specified by the manufacturer">e.g., "32A"</Tooltip>
+        - Max Charging Power <Tooltip tip="The most important metric as specified by the manufacturer">e.g., "22kW"</Tooltip>
+      </Accordion>
+      <Accordion title="Additional Details">
+        - Warranty Expiry Date <Tooltip tip="Helps with maintenance-related issues">Select from calendar</Tooltip>
+        - Serial Number <Tooltip tip="Helps in communicating with the manufacturer">e.g., "CP4000-123456"</Tooltip>
+      </Accordion>
+    </AccordionGroup>
+    
+    <Frame caption="Add Charger Form">
+      <img src="/images/AddCharger.png" alt="Add Charger Form" />
+    </Frame>
+  </Step>
+
+  <Step title="Create Charger">
+    Click on the "Create" button. You should now see your charger on the Charger Network Page under "Your Chargers" (initially shown as offline).
+    
+    <Frame caption="Newly Added Charger (Offline)">
+      <img src="/images/OfflineCharger.png" alt="Newly Added Charger Shown as Offline" />
+    </Frame>
+  </Step>
+</Steps>
+
+<Check>
+  Congratulations! You've successfully added your first charger.
+</Check>
+
+## Connecting Your Charger
+
+<Note>
+  GridFlow supports EV chargers made by 3000+ manufacturers that run on the OCPP1.6J Protocols.
+</Note>
+
+<Steps>
+  <Step title="Retrieve WebSocket Endpoint">
+    Click on the charger you just added in GridFlow Core. A modal will pop up with the WebSocket config URL for your charger.
+
+    <Info>
+      The endpoint format is: `wss://core.grdflo.com/ocpp/1.6/central_system/<charge_point_id>`
+      
+      Replace `<charge_point_id>` with your actual charge point ID.
+    </Info>
+  </Step>
+
+  <Step title="Configure WebSocket Connection">
+    <Accordion title="Detailed Connection Steps">
+      1. Access the charge point's configuration interface (refer to your manufacturer's manual).
+      2. Locate the section for inputting the WebSocket URL.
+      3. Enter the provided URL, ensuring the correct charge point ID is included.
+      4. Save the settings and restart your charge point if necessary.
+    </Accordion>
+    <Warning>
+      The exact steps may vary depending on your charger's make and model. Always consult your manufacturer's documentation.
+    </Warning>
+  </Step>
+
+  <Step title="Verify Initial Connection">
+    Ensure the charge point sends a Boot Notification upon startup. This confirms the connection to the central system.
+  </Step>
+
+  <Step title="Set Up Ongoing Communication">
+    <Accordion title="Heartbeat and Status Notifications">
+      - Configure regular heartbeat messages (interval typically set in charge point settings).
+      - Ensure the charge point sends status notifications (e.g., Available, SuspendedEVSE, Unavailable).
+      - Monitor these notifications in the central system.
+    </Accordion>
+  </Step>
+</Steps>
+
+##  Verification
+
+If everything went smoothly, you should now see:
+- Your charger's status on the Charger Network page as "Available"
+- 1 Online charger in the Total Charger Statistics
+
+<Frame caption="Charger Successfully Connected">
+  <img src="/images/OnlineCharger.png" alt="Charger Successfully Connected" />
+</Frame>
+
+<Check>
+  Congratulations! You have successfully added your first charger to GridFlow Core.
+</Check>
+
+## Next Steps
+
+Now that you've added your first charger, consider exploring these essential features:
+
+<CardGroup cols={2}>
+  <Card title="Add Your First RFID Card" icon="id-card" href="/docs/getting-started/quick-start-guide/adding-your-first-rfid-card">
+    Set up access control for your chargers
+  </Card>
+  <Card title="Creating and Managing Tariffs" icon="money-bill" href="/docs/revenue-and-billing/tariff-management/creating-and-managing-tariffs">
+    Configure pricing for your charging services
+  </Card>
+  <Card title="Charger Statuses and Troubleshooting" icon="wrench" href="/docs/charger-network-management/chargers/charger-statuses-and-troubleshooting">
+    Understand and resolve charger issues
+  </Card>
+  <Card title="Viewing Transactions" icon="chart-line" href="/docs/revenue-and-billing/transactions-and-payments/viewing-transactions">
+    Track and analyze charging sessions
+  </Card>
+</CardGroup>
+
+<Accordion title="Need Assistance?">
+  Our support team is here to help:
+
+  <CardGroup cols={2}>
+    <Card title="Email Support" icon="envelope" href="mailto:support@core.grdflo.com">
+      support@core.grdflo.com
+    </Card>
+    <Card title="Live Chat" icon="comments">
+      Chat with us in real-time by clicking on the chat icon in the bottom right corner.
+    </Card>
+  </CardGroup>
+</Accordion>
