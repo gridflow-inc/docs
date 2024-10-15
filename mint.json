@@ -1,6 +1,10 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "GridFlow Documentation",
+  "theme": "prism",
+  "background": {
+    "style": "grid"
+  },
   "logo": {
     "dark": "/logo/dark.png",
     "light": "/logo/light.png"
@@ -23,11 +27,6 @@
   },
   "anchors": [
     {
-      "name": "API Reference",
-      "icon": "rectangle-terminal",
-      "url": "api-reference"
-    },
-    {
       "name": "Changelog",
       "icon": "list",
       "url": "https://mintlify.com"
@@ -40,26 +39,120 @@
   ],
   "navigation": [
     {
-      "group": "Home",
-      "pages": ["introduction", "features"]
-    },
-    {
-      "group": "API Documentation",
-      "pages": ["api-reference/authentication"]
-    },
-    {
-      "group": "Endpoint Examples",
+      "group": "Getting Started",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
+        "docs/getting-started/introduction-to-gridflow-core",
+        {
+          "group": "Quick Start Guide",
+          "pages": [
+            "docs/getting-started/quick-start-guide/account-creation-and-initial-setup",
+            "docs/getting-started/quick-start-guide/adding-your-first-charger",
+            "docs/getting-started/quick-start-guide/setting-up-access-control-basic",
+            "docs/getting-started/quick-start-guide/going-live"
+          ]
+        }
       ]
+    },
+    {
+      "group": "Account & Organization Management",
+      "pages": [
+        "docs/account-and-organization-management/managing-your-account",
+        {
+          "group": "Managing Your Organization(s)",
+          "pages": [
+            "docs/account-and-organization-management/managing-your-organizations/working-with-multiple-organizations",
+            "docs/account-and-organization-management/managing-your-organizations/team-management",
+            "docs/account-and-organization-management/managing-your-organizations/billing-and-subscription"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Charger Network Management",
+      "pages": [
+        "docs/charger-network-management/understanding-charger-groups",
+        {
+          "group": "Charger Groups",
+          "pages": [
+            "docs/charger-network-management/charger-groups/creating-and-managing-charger-groups",
+            "docs/charger-network-management/charger-groups/bulk-charger-upload" 
+          ]
+        },
+        {
+          "group": "Chargers",
+          "pages": [
+            "docs/charger-network-management/chargers/adding-and-managing-individual-chargers",
+            "docs/charger-network-management/chargers/charger-statuses-and-troubleshooting",
+            "docs/charger-network-management/chargers/advanced-charger-settings",
+            "docs/charger-network-management/chargers/connecting-your-chargers"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Revenue & Billing",
+      "pages": [
+        "docs/revenue-and-billing/revenue-overview",
+        {
+          "group": "Tariff Management",
+          "pages": [
+            "docs/revenue-and-billing/tariff-management/creating-and-managing-tariffs",
+            "docs/revenue-and-billing/tariff-management/applying-tariffs-to-charger-groups",
+            "docs/revenue-and-billing/tariff-management/tariff-strategies"
+          ]
+        },
+        {
+          "group": "Transactions & Payments",
+          "pages": [
+            "docs/revenue-and-billing/transactions-and-payments/viewing-transactions",
+            "docs/revenue-and-billing/transactions-and-payments/settlement-and-payouts"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Access Control & User Management",
+      "pages": [
+        "docs/access-control-and-user-management/access-control-overview",
+        "docs/access-control-and-user-management/managing-card-holders",
+        "docs/access-control-and-user-management/managing-rfid-cards",
+        "docs/access-control-and-user-management/access-profiles"
+      ]
+    },
+    {
+      "group": "Integrations & Advanced Features",
+      "pages": [
+        "docs/integrations-and-advanced-features/webhooks",
+        "docs/integrations-and-advanced-features/api-integration",
+        "docs/integrations-and-advanced-features/reporting-and-analytics"
+      ]
+    },
+    {
+      "group": "Support & Resources",
+      "pages": [
+        "docs/support-and-resources/faq",
+        "docs/support-and-resources/troubleshooting-guide",
+        "docs/support-and-resources/contact-support",
+        {
+          "group": "AI Chatbot",
+          "pages": [
+            "docs/support-and-resources/ai-chatbot/using-the-chatbot",
+            "docs/support-and-resources/ai-chatbot/chatbot-training-for-admins"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Glossary of Terms",
+      "pages": ["docs/glossary-of-terms/glossary-of-terms"]
     }
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/mintlify",
     "github": "https://github.com/gridflow-inc",
     "linkedin": "http://linkedin.com/company/grdflo/"
+  },
+  "integrations": {
+    "intercom": "coujd56h"
   }
 }
