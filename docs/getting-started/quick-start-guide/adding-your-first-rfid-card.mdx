@@ -1,5 +1,338 @@
 ---
 title: "Adding Your First RFID Card"
+description: 'Learn how to create a Card Holder and add an RFID card to GridFlow Core'
 ---
 
-Write your content here.
+<Note>
+  This guide assumes you have already added a charger to GridFlow Core. If you haven't, please refer to the [Adding Your First Charger](/docs/getting-started/quick-start-guide/adding-your-first-charger) guide first.
+</Note>
+
+## Overview
+
+Adding your first RFID card involves two main steps:
+1. Creating a Card Holder
+2. Creating an Access Profile and restriction limits
+3. Adding an RFID card to the Card Holder
+
+Let's get started!
+
+## Understanding Access Methods
+
+<Info>
+  Before adding an RFID card, it's important to understand the two primary ways to use chargers in the GridFlow Core System.
+</Info>
+
+<CardGroup cols={2}>
+  <Card title="Using RFID" icon="id-card">
+    This is the primary method for your team and internal members. You'll manually set up RFID Cards for each user, making it unsuitable for public use.
+  </Card>
+  <Card title="Using GridFlow Drive" icon="mobile-screen">
+    This method is designed for public usage. Users can access your chargers through the GridFlow Drive Web or Mobile App by scanning a QR code on the EV Charger.
+  </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="Access Control Overview" icon="shield-check" href="#" />
+  <Card title="GridFlow Drive" icon="car" href="#" />
+  <Card title="Managing Card Holders" icon="user-group" href="#" />
+  <Card title="Managing RFID Cards" icon="credit-card" href="#" />
+</CardGroup>
+
+## Creating a Card Holder
+
+<Info>
+  It's essential to create a Card Holder before adding individual RFID cards. A Card Holder represents the primary person who will be using the card and serves as the point of contact for anything related to this card.
+</Info>
+
+<Steps>
+  <Step title="Navigate to Access Control">
+    Access the Access Control page from the sidebar on the left.
+    
+    <Frame caption="GridFlow Core Navigation">
+      <img src="/images/nav_sidebar_access_control.png" alt="Navigating to Access Control" />
+    </Frame>
+  </Step>
+
+  <Step title="Open Card Holders tab">
+    Click on the "Card Holders" tab in the Access Control page.
+  </Step>
+
+  <Step title="Add new Card Holder">
+    Click on the "Add Card Holder" button in the top left of the table. A sidebar will open on the right of the screen.
+  </Step>
+
+  <Step title="Fill Card Holder Details">
+    Provide the following information:
+    
+    <AccordionGroup>
+      <Accordion title="Name">
+        Enter the full name of the card holder
+      </Accordion>
+      <Accordion title="Email">
+        <Tooltip tip="This will be used for communication and account recovery">
+          Enter a valid email address
+        </Tooltip>
+      </Accordion>
+      <Accordion title="Role">
+        Specify the card holder's position or designation
+      </Accordion>
+      <Accordion title="Phone Number">
+        Enter a contact number for the card holder
+      </Accordion>
+      <Accordion title="Address">
+        Provide the card holder's address
+      </Accordion>
+      <Accordion title="Card Holder Expiration">
+        <Tooltip tip="Optional: Set if the card holder should have an expiry date">
+          Toggle and set an expiration date if needed
+        </Tooltip>
+      </Accordion>
+    </AccordionGroup>
+    
+    <Frame caption="Card Holder Details Form">
+      <img src="/images/AddCardHolder.png" alt="Card Holder Details Form" />
+    </Frame>
+  </Step>
+
+  <Step title="Create Card Holder">
+    Click the "Save Changes" button to finalize the card holder creation.
+  </Step>
+</Steps>
+
+<Check>
+  Congratulations! You've successfully created your first Card Holder.
+</Check>
+
+## Creating an Access Profile
+
+<Info>
+  Before adding RFID cards, you need to create an Access Profile that defines when and where the cards can be used. Access Profiles help manage permissions across your charging network.
+</Info>
+
+<Steps>
+  <Step title="Navigate to Access Profiles">
+    On the Access Control page, click on the "Access Profiles" tab.
+    
+    <Frame caption="Access Profiles Tab">
+      <img src="/images/AccessProfilesTab.png" alt="Access Profiles Tab Location" />
+    </Frame>
+  </Step>
+
+  <Step title="Create New Profile">
+    Click on the "Create New Access Profile" button in the top right of the table. A modal will open.
+    
+    <Frame caption="Create Access Profile Modal">
+      <img src="/images/CreateAccessProfile.png" alt="Create Access Profile Modal" />
+    </Frame>
+  </Step>
+
+  <Step title="Basic Profile Setup">
+    <AccordionGroup>
+      <Accordion title="Profile Name">
+        Choose a descriptive name for your profile
+        <Tip>
+          Examples: Maintenance Profile, Driver Profile, Staff Profile, Technician Profile
+        </Tip>
+      </Accordion>
+      
+      <Accordion title="Access Scope">
+        - Select Charger Groups from the dropdown (multiple selections allowed)
+        - Optionally select specific Charge Points (multiple selections allowed)
+      </Accordion>
+      
+      <Accordion title="Description">
+        Add a clear description explaining the profile's purpose and scope
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+
+  <Step title="Set Up Restriction Limits">
+    <Info>
+      Restriction limits define when and how much charging is allowed for cards using this profile.
+    </Info>
+
+    Click "Create New Restriction Limit" in the dropdown and fill out the following in the sidebar:
+    
+    <AccordionGroup>
+      <Accordion title="Allowed Weekdays" defaultOpen>
+        For each day, set:
+        - Active days (select which days to allow)
+        - Start Time
+        - End Time
+        
+        <Frame caption="Weekday Selection">
+          <img src="/images/WeekdaySelection.png" alt="Setting allowed weekdays and times" />
+        </Frame>
+      </Accordion>
+
+      <Accordion title="Time Limits">
+        Set maximum duration limits:
+        - Daily Max Time (Hours)
+        - Weekly Max Time (Hours)
+        - Monthly Max Time (Hours)
+        - All Time Max Time (Hours)
+      </Accordion>
+
+      <Accordion title="Energy Limits">
+        Set maximum energy consumption:
+        - Daily Max Energy (KWh)
+        - Weekly Max Energy (KWh)
+        - Monthly Max Energy (KWh)
+        - All Time Max Energy (KWh)
+      </Accordion>
+
+      <Accordion title="Example Configuration">
+        <Frame caption="Restriction Limits Example">
+          Allowed Weekdays:
+          - Monday: 10:30 - 18:00
+          - Wednesday: 02:30 - 23:00
+
+          Time Limits:
+          - Daily: 5.5 hours
+          - Weekly: 1.5 hours
+
+          Energy Limits:
+          - Daily: 23 kWh
+          - Weekly: 82.5 kWh
+          - Monthly: 597.5 kWh
+          - All-time: 3679.5 kWh
+        </Frame>
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+
+  <Step title="Review and Save">
+    <Warning>
+      Double-check all settings before saving. These restrictions will apply to all RFID cards using this profile.
+    </Warning>
+
+    1. Review the summary section
+    2. Add a description for the restriction limit
+    3. Click "Save Changes"
+    
+    <Frame caption="Review Summary">
+      <img src="/images/RestrictionLimitSummary.png" alt="Review Access Profile Settings" />
+    </Frame>
+  </Step>
+
+  <Step title="Complete Profile Creation">
+    After creating the restriction limit:
+    1. Select it from the restriction limit dropdown
+    2. Review all profile settings
+    3. Click "Create" to finalize the access profile
+  </Step>
+</Steps>
+
+<Check>
+  You've successfully created an Access Profile! Now you can proceed to add RFID cards and assign them this profile.
+</Check>
+
+## Adding an RFID Card
+
+Now that you've created a card holder, let's add an RFID card to their profile.
+
+<Steps>
+  <Step title="Locate the Card Holder">
+    Find your newly created Card Holder in the table and click on it.
+    
+    <Frame caption="Card Holder List">
+      <img src="/images/CardHolderList.png" alt="Locating Card Holder in the list" />
+    </Frame>
+  </Step>
+
+  <Step title="Access RFID Card section">
+    In the modal that opens, locate the RFID Cards table on the right.
+  </Step>
+
+  <Step title="Initiate RFID Card Addition">
+    Click the "Create a new RFID" button in the top right of the RFID Cards table. A sidebar will open on the right.
+  </Step>
+
+  <Step title="Enter RFID Card Details">
+    Provide the following information:
+    
+    <AccordionGroup>
+      <Accordion title="UID (Unique Identifier)">
+        <Tooltip tip="This number is usually printed on the card">
+          Enter the unique identifier of the RFID card
+        </Tooltip>
+      </Accordion>
+      <Accordion title="Type">
+        Select one of the following options:
+        - Mifare Plus
+        - Mifare Classic (not recommended)
+        - Mifare DESFire
+      </Accordion>
+      <Accordion title="Card Status">
+        Choose whether the card should be:
+        - Enabled (ready for immediate use)
+        - Disabled (can be enabled later)
+      </Accordion>
+      <Accordion title="Access Profile">
+        <Tooltip tip="Determines which chargers this card can access">
+          Select an appropriate access profile from the dropdown
+        </Tooltip>
+      </Accordion>
+      <Accordion title="Card Expiration">
+        <Tooltip tip="Optional: Set if the card should automatically expire">
+          Toggle and set an expiration date if needed
+        </Tooltip>
+      </Accordion>
+    </AccordionGroup>
+    
+    <Frame caption="Add RFID Card Form">
+      <img src="/images/AddRFIDCard.png" alt="Add RFID Card Form" />
+    </Frame>
+  </Step>
+
+  <Step title="Create RFID Card">
+    Click on the "Create" button. You should now see your new RFID card listed in the Card Holder's RFID Cards table.
+  </Step>
+</Steps>
+
+<Check>
+  Congratulations! You've successfully added your first RFID card to GridFlow Core.
+</Check>
+
+## Verification
+
+If everything went smoothly, you should now see:
+- Your new RFID card listed in the Card Holder's RFID Cards table
+- The card status as "Enabled" (if you chose to enable it)
+- The assigned Access Profile for the card
+
+<Frame caption="RFID Card Successfully Added">
+  <img src="/images/RFIDCardVerification.png" alt="RFID Card Successfully Added and Verified" />
+</Frame>
+
+## Next Steps
+
+Now that you've added your first RFID card, consider exploring these related features:
+
+<CardGroup cols={2}>
+  <Card title="Managing Access Profiles" icon="user-lock" href="/docs/access-control/managing-access-profiles">
+    Configure and manage access permissions for different user groups
+  </Card>
+  <Card title="Bulk RFID Card Upload" icon="file-import" href="/docs/access-control/bulk-rfid-card-upload">
+    Learn how to add multiple RFID cards efficiently
+  </Card>
+  <Card title="Monitoring RFID Usage" icon="chart-bar" href="/docs/access-control/monitoring-rfid-usage">
+    Track and analyze RFID card usage across your charger network
+  </Card>
+  <Card title="Troubleshooting RFID Issues" icon="wrench" href="/docs/access-control/troubleshooting-rfid-issues">
+    Resolve common RFID-related problems
+  </Card>
+</CardGroup>
+
+<Accordion title="Need Assistance?">
+  Our support team is here to help:
+
+  <CardGroup cols={2}>
+    <Card title="Email Support" icon="envelope" href="mailto:support@core.grdflo.com">
+      support@core.grdflo.com
+    </Card>
+    <Card title="Live Chat" icon="comments">
+      Chat with us in real-time by clicking on the chat icon in the bottom right corner.
+    </Card>
+  </CardGroup>
+</Accordion>

@@ -1,5 +1,532 @@
 ---
-title: "Going Live"
+title: "Adding Your First RFID Card"
+description: 'Learn how to create a Card Holder, set up Access Profiles, and add RFID cards to GridFlow Core'
 ---
 
-Write your content here.
+<Note>
+  This guide assumes you have already added a charger to GridFlow Core. If you haven't, please refer to the [Adding Your First Charger](/docs/getting-started/quick-start-guide/adding-your-first-charger) guide first.
+</Note>
+
+## Process Overview
+
+<Tabs>
+  <Tab title="Steps">
+    ```mermaid
+    graph TD
+      A[Start] --> B[Create Card Holder]
+      B --> C[Create Access Profile]
+      C --> D[Set Restriction Limits]
+      D --> E[Add RFID Card]
+      E --> F[Verify Access]
+      F --> G[End]
+    ```
+  </Tab>
+  <Tab title="Prerequisites">
+    <CardGroup cols={2}>
+      <Card title="Required Items" icon="clipboard-check">
+        - RFID Card
+        - Card Holder Details
+        - Charger Groups Created
+      </Card>
+      <Card title="Time Required" icon="clock">
+        Approximately 15-20 minutes
+      </Card>
+    </CardGroup>
+  </Tab>
+</Tabs>
+
+## Understanding Access Methods
+
+<Info>
+  Before adding an RFID card, understand the two primary ways to use chargers in GridFlow Core.
+</Info>
+
+<CardGroup cols={2}>
+  <Card title="RFID Access" icon="id-card">
+    <AccordionGroup>
+      <Accordion title="Best For" icon="users">
+        Internal team members, staff, and regular users
+      </Accordion>
+      <Accordion title="Key Features" icon="star">
+        - Controlled access management
+        - Usage tracking per card
+        - Customizable restrictions
+      </Accordion>
+      <Accordion title="Setup Required" icon="tools">
+        - Card Holder creation
+        - Access Profile configuration
+        - RFID card registration
+      </Accordion>
+    </AccordionGroup>
+  </Card>
+  <Card title="GridFlow Drive" icon="mobile-screen">
+    <AccordionGroup>
+      <Accordion title="Best For" icon="users">
+        Public users and occasional visitors
+      </Accordion>
+      <Accordion title="Key Features" icon="star">
+        - QR code scanning
+        - Mobile app access
+        - Instant activation
+      </Accordion>
+      <Accordion title="Setup Required" icon="tools">
+        - None (automatically enabled)
+        - QR codes pre-configured
+      </Accordion>
+    </AccordionGroup>
+  </Card>
+</CardGroup>
+
+<Warning>
+  This guide focuses on RFID card setup. For GridFlow Drive setup, see the [GridFlow Drive Configuration](/docs/access-control/gridflow-drive) guide.
+</Warning>
+
+## Quick Reference
+
+<CardGroup cols={3}>
+  <Card 
+    title="Access Control Overview" 
+    icon="shield-check" 
+    href="/docs/access-control/overview"
+  >
+    Learn about access control basics
+  </Card>
+  <Card 
+    title="Card Management" 
+    icon="id-badge" 
+    href="/docs/access-control/card-management"
+  >
+    Advanced card management features
+  </Card>
+  <Card 
+    title="Troubleshooting" 
+    icon="wrench" 
+    href="/docs/access-control/troubleshooting"
+  >
+    Common issues and solutions
+  </Card>
+</CardGroup>
+
+## Creating a Card Holder
+
+<Tabs>
+  <Tab title="Overview">
+    <Info>
+      A Card Holder is the person who will be using the RFID card. This person serves as the point of contact for all card-related matters.
+    </Info>
+    
+    <CardGroup cols={2}>
+      <Card title="Required Information" icon="list-check">
+        - Full Name
+        - Email Address
+        - Role/Position
+        - Contact Details
+      </Card>
+      <Card title="Optional Details" icon="circle-plus">
+        - Address
+        - Expiration Date
+        - Additional Notes
+      </Card>
+    </CardGroup>
+  </Tab>
+  
+  <Tab title="Step-by-Step">
+    <Steps>
+      <Step title="Navigate to Access Control">
+        Access the Access Control page from the sidebar on the left.
+        
+        <Frame caption="GridFlow Core Navigation">
+          <img src="/images/nav_sidebar_access_control.png" alt="Navigating to Access Control" />
+        </Frame>
+      </Step>
+
+      <Step title="Open Card Holders Tab">
+        <AccordionGroup>
+          <Accordion title="Navigation Steps" defaultOpen>
+            1. Click on the "Card Holders" tab
+            2. Locate the "Add Card Holder" button in the top left
+          </Accordion>
+          <Accordion title="Interface Tips">
+            <Tip>
+              Use the search bar to verify if the card holder already exists before creating a new one.
+            </Tip>
+          </Accordion>
+        </AccordionGroup>
+      </Step>
+
+      <Step title="Fill Card Holder Details">
+        <AccordionGroup>
+          <Accordion title="Basic Information" defaultOpen>
+            - Name <Tooltip tip="Enter the full legal name">Full name of card holder</Tooltip>
+            - Email <Tooltip tip="Used for notifications and recovery">Valid email address</Tooltip>
+            - Role <Tooltip tip="Position or job title">E.g., Technician, Driver, Staff</Tooltip>
+          </Accordion>
+          
+          <Accordion title="Contact Information">
+            - Phone Number <Tooltip tip="Primary contact number">Include country code</Tooltip>
+            - Address <Tooltip tip="Optional but recommended">Business or home address</Tooltip>
+          </Accordion>
+          
+          <Accordion title="Access Settings">
+            - Card Holder Expiration <Tooltip tip="Optional end date for access">Set if temporary access is needed</Tooltip>
+            - Notes <Tooltip tip="Any additional information">Special considerations or requirements</Tooltip>
+          </Accordion>
+        </AccordionGroup>
+        
+        <Frame caption="Card Holder Details Form">
+          <img src="/images/AddCardHolder.png" alt="Card Holder Details Form" />
+        </Frame>
+      </Step>
+
+      <Step title="Save Card Holder">
+        Click "Save Changes" to create the card holder profile.
+        
+        <Warning>
+          Double-check all information before saving. Email addresses and phone numbers should be verified for accuracy.
+        </Warning>
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+<Check>
+  You've successfully created a Card Holder profile! Next, let's set up an Access Profile.
+</Check>
+
+## Creating an Access Profile
+
+<Tabs>
+  <Tab title="Overview">
+    <Info>
+      Access Profiles define when and where RFID cards can be used, along with any usage limits.
+    </Info>
+
+    ```mermaid
+    graph LR
+      A[Access Profile] --> B[Charger Access]
+      A --> C[Time Restrictions]
+      A --> D[Usage Limits]
+      B --> E[Charger Groups]
+      B --> F[Individual Chargers]
+      C --> G[Days & Hours]
+      D --> H[Time & Energy]
+    ```
+  </Tab>
+
+  <Tab title="Step-by-Step">
+    <Steps>
+      <Step title="Navigate to Access Profiles">
+        On the Access Control page, select the "Access Profiles" tab.
+        
+        <Frame caption="Access Profiles Navigation">
+          <img src="/images/AccessProfilesTab.png" alt="Access Profiles Tab Location" />
+        </Frame>
+      </Step>
+
+      <Step title="Create New Profile">
+        <AccordionGroup>
+          <Accordion title="Initial Setup" defaultOpen>
+            1. Click "Create New Access Profile" button
+            2. A modal will open for profile configuration
+            
+            <Frame caption="Create Profile Modal">
+              <img src="/images/CreateAccessProfile.png" alt="Create Access Profile Modal" />
+            </Frame>
+          </Accordion>
+
+          <Accordion title="Profile Naming Tips">
+            <Tip>
+              Use descriptive names that indicate:
+              - User group (e.g., Staff, Maintenance)
+              - Access level (e.g., Full, Limited)
+              - Location (if specific)
+            </Tip>
+          </Accordion>
+        </AccordionGroup>
+      </Step>
+
+      <Step title="Configure Access Settings">
+        <AccordionGroup>
+          <Accordion title="Charger Access" defaultOpen>
+            Select which chargers this profile can access:
+            - Choose Charger Groups
+            - Select specific chargers (optional)
+            
+            <Warning>
+              At least one Charger Group or charger must be selected.
+            </Warning>
+          </Accordion>
+
+          <Accordion title="Time Restrictions">
+            Set when charging is allowed:
+            - Select active days
+            - Define time windows
+            - Set multiple schedules if needed
+          </Accordion>
+
+          <Accordion title="Usage Limits">
+            Configure maximum usage:
+            - Time limits (daily/weekly/monthly)
+            - Energy limits (kWh)
+            - Session limits
+          </Accordion>
+        </AccordionGroup>
+      </Step>
+
+      <Step title="Set Up Restriction Limits">
+        Click "Create New Restriction Limit" and configure:
+        
+        <AccordionGroup>
+          <Accordion title="Schedule Settings" defaultOpen>
+            <Frame caption="Weekday Selection">
+              <img src="/images/WeekdaySelection.png" alt="Setting allowed weekdays and times" />
+            </Frame>
+            
+            Example Schedule:
+            - Monday: 10:30 - 18:00
+            - Wednesday: 02:30 - 23:00
+          </Accordion>
+
+          <Accordion title="Time Limitations">
+            Set maximum durations:
+            - Daily: 5.5 hours
+            - Weekly: 1.5 hours
+            - Monthly: Custom
+            - All-time: Custom
+          </Accordion>
+
+          <Accordion title="Energy Restrictions">
+            Configure energy limits:
+            - Daily: 23 kWh
+            - Weekly: 82.5 kWh
+            - Monthly: 597.5 kWh
+            - All-time: 3679.5 kWh
+          </Accordion>
+        </AccordionGroup>
+      </Step>
+
+      <Step title="Review and Finalize">
+        <Warning>
+          Carefully review all settings as they will affect all cards using this profile.
+        </Warning>
+
+        1. Check the summary section
+        2. Add a detailed description
+        3. Click "Save Changes"
+        
+        <Frame caption="Profile Summary">
+          <img src="/images/RestrictionLimitSummary.png" alt="Review Access Profile Settings" />
+        </Frame>
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+<Check>
+  Access Profile created successfully! Now let's add an RFID card and assign this profile.
+</Check>
+
+## Adding an RFID Card
+
+<Tabs>
+  <Tab title="Overview">
+    <Info>
+      RFID cards are physical credentials that allow access to your charging network based on the assigned Access Profile.
+    </Info>
+
+    <CardGroup cols={2}>
+      <Card title="Required Items" icon="list-check">
+        - Physical RFID Card
+        - Card's Unique Identifier (UID)
+        - Access Profile
+        - Card Holder
+      </Card>
+      <Card title="Optional Settings" icon="gear">
+        - Expiration Date
+        - Usage Restrictions
+        - Custom Description
+      </Card>
+    </CardGroup>
+  </Tab>
+
+  <Tab title="Step-by-Step">
+    <Steps>
+      <Step title="Locate Card Holder">
+        <AccordionGroup>
+          <Accordion title="Navigation" defaultOpen>
+            1. Go to Card Holders tab
+            2. Find your Card Holder in the list
+            3. Click on their name to open details
+            
+            <Frame caption="Locating Card Holder">
+              <img src="/images/CardHolderList.png" alt="Card Holder List View" />
+            </Frame>
+          </Accordion>
+          
+          <Accordion title="Search Tips">
+            <Tip>
+              Use the search function to quickly find Card Holders by name, email, or role.
+            </Tip>
+          </Accordion>
+        </AccordionGroup>
+      </Step>
+
+      <Step title="Initiate Card Addition">
+        <AccordionGroup>
+          <Accordion title="Access RFID Section" defaultOpen>
+            In the Card Holder details modal:
+            1. Locate the RFID Cards section
+            2. Click "Create a new RFID" button
+            
+            <Frame caption="RFID Card Creation">
+              <img src="/images/AddRFIDCard.png" alt="Add RFID Card Interface" />
+            </Frame>
+          </Accordion>
+        </AccordionGroup>
+      </Step>
+
+      <Step title="Enter Card Details">
+        <AccordionGroup>
+          <Accordion title="Basic Information" defaultOpen>
+            - UID <Tooltip tip="Unique Identifier printed on the card">Enter exactly as shown on card</Tooltip>
+            - Card Type Selection:
+              - Mifare Plus (Recommended)
+              - Mifare DESFire
+              - Mifare Classic (Legacy)
+          </Accordion>
+
+          <Accordion title="Access Settings">
+            - Status: Enabled/Disabled
+            - Access Profile <Tooltip tip="Select from previously created profiles">Choose appropriate profile</Tooltip>
+            - Expiration Date (Optional)
+          </Accordion>
+
+          <Accordion title="Additional Options">
+            - Custom Description
+            - Notes
+            - Special Permissions
+          </Accordion>
+        </AccordionGroup>
+
+        <Warning>
+          Double-check the UID entry - incorrect numbers will prevent card access.
+        </Warning>
+      </Step>
+
+      <Step title="Complete Registration">
+        <AccordionGroup>
+          <Accordion title="Final Steps" defaultOpen>
+            1. Review all entered information
+            2. Click "Create" to register the card
+            3. Verify the card appears in the RFID Cards list
+          </Accordion>
+          
+          <Accordion title="Verification Checklist">
+            - Card status shows as "Enabled"
+            - Correct Access Profile is assigned
+            - UID matches physical card
+          </Accordion>
+        </AccordionGroup>
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Testing and Verification
+
+<Tabs>
+  <Tab title="Verification Steps">
+    <Steps>
+      <Step title="Check Card Status">
+        Verify in the system:
+        - Card appears in the list
+        - Status shows as "Enabled"
+        - Access Profile is correctly assigned
+        
+        <Frame caption="Card Status Verification">
+          <img src="/images/RFIDCardVerification.png" alt="RFID Card Status" />
+        </Frame>
+      </Step>
+
+      <Step title="Physical Testing">
+        <AccordionGroup>
+          <Accordion title="Test Procedure" defaultOpen>
+            1. Approach an authorized charger
+            2. Present the RFID card to the reader
+            3. Verify the charger recognizes the card
+            4. Confirm charging session can be started
+          </Accordion>
+          
+          <Accordion title="Common Issues">
+            <Warning>
+              If the card doesn't work:
+              - Verify UID was entered correctly
+              - Check Access Profile permissions
+              - Ensure charger is in allowed group
+              - Confirm card is enabled
+            </Warning>
+          </Accordion>
+        </AccordionGroup>
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Success Criteria">
+    <CardGroup cols={2}>
+      <Card title="System Indicators" icon="computer">
+        - Card status "Active"
+        - Correct profile assignment
+        - Visible in card holder's list
+      </Card>
+      <Card title="Physical Access" icon="plug">
+        - Card read by charger
+        - Authorization successful
+        - Charging session starts
+      </Card>
+    </CardGroup>
+  </Tab>
+</Tabs>
+
+## Next Steps and Management
+
+<CardGroup cols={2}>
+  <Card title="Access Profile Management" icon="user-lock" href="/docs/access-control/managing-access-profiles">
+    Fine-tune access permissions and restrictions
+  </Card>
+  <Card title="Bulk Card Operations" icon="layer-group" href="/docs/access-control/bulk-rfid-operations">
+    Manage multiple cards efficiently
+  </Card>
+  <Card title="Usage Monitoring" icon="chart-line" href="/docs/access-control/monitoring">
+    Track and analyze card usage patterns
+  </Card>
+  <Card title="Troubleshooting Guide" icon="wrench" href="/docs/access-control/troubleshooting">
+    Resolve common access issues
+  </Card>
+</CardGroup>
+
+<Accordion title="Additional Resources">
+  <CardGroup cols={3}>
+    <Card title="Video Tutorials" icon="play-circle" href="/docs/resources/videos">
+      Step-by-step video guides
+    </Card>
+    <Card title="FAQ" icon="question-circle" href="/docs/resources/faq">
+      Frequently asked questions
+    </Card>
+    <Card title="Support" icon="headset" href="/docs/support">
+      Contact our support team
+    </Card>
+  </CardGroup>
+</Accordion>
+
+<Note>
+  Need help? Our support team is available 24/7:
+  
+  <CardGroup cols={2}>
+    <Card title="Email Support" icon="envelope" href="mailto:support@core.grdflo.com">
+      support@core.grdflo.com
+    </Card>
+    <Card title="Live Chat" icon="comments">
+      Click the chat icon in the bottom right corner
+    </Card>
+  </CardGroup>
+</Note>
